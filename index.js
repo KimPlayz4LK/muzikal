@@ -51,7 +51,7 @@ const embed = new Discord.MessageEmbed()
 .setTitle('Help | Prefix: >')
 .setDescription("Here's a list of commands that you can use.\r\nTo use soundboard, type `>sb ` and a sound that you would like to play in a voice channel.")
 .addFields(
-{name:":passport_control: | Support server",value:"https://discord.gg/c3aeNWm"}
+{name:":passport_control: | Support server",value:"https://discord.gg/c3aeNWm"},
 {name:":tools: | Info & Tools",value:"help"},
 {name:":musical_note: | Music",value:"play, stop"},
 {name:":musical_keyboard: | Soundboard (sb)",value: sounds})
