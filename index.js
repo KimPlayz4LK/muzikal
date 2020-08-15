@@ -3,29 +3,21 @@ const client = new Discord.Client();
 const prefix = ">";
 const ytdl = require('ytdl-core');
 const sounds = ["discord-ping","fbi_openup","microwave_earrape","cs_punch_earrape","nyan-cat","bruh","oh-no_troll_laugh","hamburger_earrape","bass-boost_earrape","earrape_bruh","nani_full","squish_that_cat","yeet_earrape","cricket","nope","suspense","quack","no","baby_scream","earrape_scream","winxp_error"];
-
 require('dotenv').config();
-
 process.on('unhandledRejection', error => console.error('Uncaught Promise Rejection', error));
-
 function between(min, max) {return Math.floor(Math.random() * (max - min) + min)}
-
 function newStatus() {
 var statusIndex = between(0,3);
 if (statusIndex===0) {client.user.setActivity('sounds | >help', { type: 'PLAYING' });}
 if (statusIndex===1) {client.user.setActivity('pranks | >help', { type: 'WATCHING' });}
 if (statusIndex===2) {client.user.setActivity(`${client.users.cache.size} listeners | >help`, { type: 'WATCHING' });}
-if (statusIndex===3) {client.user.setActivity(`${client.guilds.cache.size} server(s) | >help`, { type: 'WATCHING' });}
-}
-
+if (statusIndex===3) {client.user.setActivity(`${client.guilds.cache.size} server(s) | >help`, { type: 'WATCHING' });}}
 client.once('ready', () => {
 console.log('Ready!');
-console.log(`Bot has started, with ${client.users.cache.size} users, in ${client.channels.cache.size} channels of ${client.guilds.cache.size} guilds.`);
+console.log(`${client.users.cache.size} users, in ${client.channels.cache.size} channels of ${client.guilds.cache.size} guilds detected`);
 newStatus();
 setInterval(function(){newStatus();},10000);
 });
-
-
 client.on("guildCreate", guild => {
 console.log(`Joined to: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
 const user = client.users.cache.get('718828195230515291');
@@ -49,26 +41,23 @@ var embed = new Discord.MessageEmbed()
 .addField("Server ID",guild.id)
 user.send(embed);
 });
-
 client.on('message', async message =>{
 if (message.content.startsWith(prefix)===true) {
 var command = message.content.substring(prefix.length,message.content.length);
 var args = command.split(" ");
-
 if (command.startsWith("help")===true) {
 const embed = new Discord.MessageEmbed()
 .setColor('#0099ff')
 .setTitle('Help | Prefix: >')
-.setDescription("Here's a list of commands that you can use")
+.setDescription("Here's a list of commands that you can use.\r\nTo use soundboard, type `>sb ` and a sound that you would like to play in a voice channel.")
 .addFields(
 { name: ":tools: | Info & Tools", value: "help" },
 { name: ":musical_note: | Music", value: "play, stop" },
 { name: ":musical_keyboard: | Soundboard (sb)", value: sounds}
 )
-.setFooter("GameBot | Help");
+.setFooter("Muzikal | Help");
 message.channel.send(embed);
 }
-
 if (command.startsWith("play")===true) {
 if (args[1] !== undefined){
 if (args[1].startsWith("http") === true) {
@@ -124,7 +113,6 @@ message.channel.send(embed);
 .addField("Music stopped by", message.author)
 message.channel.send(embed);
 }
-
 if (command.startsWith("sb ")===true) {
 message.channel.bulkDelete(1,true);
 const voiceChannel = message.member.voice.channel;
@@ -143,8 +131,5 @@ var embed = new Discord.MessageEmbed()
 .setTitle(':x: | Error')
 .setDescription("That sound name does not exist, please type >help to get a list of commands.")
 message.channel.send(embed);}
-}}
-
-}});
-
+}}}});
 client.login(process.env.TOKEN);
