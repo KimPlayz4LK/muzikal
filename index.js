@@ -71,7 +71,6 @@ var embed = new Discord.MessageEmbed()
 return message.channel.send(embed);
 }
 voiceChannel.join().then(connection => {
-message.reply(args[1]);
 const stream = ytdl(args[1], { filter: 'audioonly' });
 const dispatcher = connection.play(stream);
 var embed = new Discord.MessageEmbed()
