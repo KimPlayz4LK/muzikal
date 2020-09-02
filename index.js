@@ -35,7 +35,7 @@ console.log(`Removed from: ${guild.name} (id: ${guild.id})`);
 const user = client.users.cache.get('718828195230515291');
 var embed = new Discord.MessageEmbed()
 .setColor('#0ba9d9')
-.setTitle(":ioutbox_tray: | I've leaved a server!")
+.setTitle(":outbox_tray: | I've leaved a server!")
 .setDescription("Someone made me to quit a server...")
 .addField("Server name",guild.name)
 .addField("Server ID",guild.id)
@@ -54,7 +54,9 @@ const embed = new Discord.MessageEmbed()
 {name:":passport_control: | Support server",value:"https://discord.gg/c3aeNWm"},
 {name:":tools: | Info & Tools",value:"help"},
 {name:":musical_note: | Music",value:"play, stop"},
-{name:":musical_keyboard: | Soundboard (sb)",value: sounds})
+{name:":musical_keyboard: | Soundboard (sb)",value: sounds},
+{name:":love_letter: | Invite me!",value:"[Invite me here](https://discord.com/api/oauth2/authorize?client_id=744289406390632585&permissions=8&scope=bot)"},
+)
 .setFooter("Muzikal | Help");
 message.channel.send(embed);
 }
